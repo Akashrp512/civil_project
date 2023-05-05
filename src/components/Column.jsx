@@ -23,37 +23,52 @@ function Column({ setASC, ASC, setAC, AC, setP, P }) {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-4">
-      <h1 className="text-2xl">Calculator</h1>
-      <div className="flex items-center">
-        <label className="mr-2">Breadth (b):</label>
-        <input
-          type="number"
-          value={breadth}
-          onChange={(e) => setBreadth(e.target.value)}
-          className="border-2 p-1"
-        />
-      </div>
-      <div className="flex items-center mt-2">
-        <label className="mr-2">Depth (d):</label>
-        <input
-          type="number"
-          value={depth}
-          onChange={(e) => setDepth(e.target.value)}
-          className="border-2 p-1"
-        />
-      </div>
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-        onClick={calculateValues}
-      >
-        Calculate
-      </button>
-      <div className="mt-4">
-        <p>ASC: {ASC}</p>
-
-        <p>AC: {AC}</p>
-        <p>P: {P}</p>
+    <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md mx-auto">
+      <h1 className="text-2xl font-semibold mb-6 text-blue-600">
+        Column Calculator
+      </h1>
+      <div className="space-y-4">
+        <div className="flex flex-col">
+          <label htmlFor="breadth" className="font-medium text-gray-600">
+            Breadth (b):
+          </label>
+          <input
+            type="number"
+            id="breadth"
+            value={breadth}
+            onChange={(e) => setBreadth(e.target.value)}
+            className="border-2 p-1 rounded focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="depth" className="font-medium text-gray-600">
+            Depth (d):
+          </label>
+          <input
+            type="number"
+            id="depth"
+            value={depth}
+            onChange={(e) => setDepth(e.target.value)}
+            className="border-2 p-1 rounded focus:border-blue-500"
+          />
+        </div>
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded w-full transition duration-200 hover:bg-blue-600"
+          onClick={calculateValues}
+        >
+          Calculate
+        </button>
+        <div className="mt-6 space-y-2">
+          <p className="font-medium text-gray-700">
+            ASC: <span className="font-normal">{ASC}</span>
+          </p>
+          <p className="font-medium text-gray-700">
+            AC: <span className="font-normal">{AC}</span>
+          </p>
+          <p className="font-medium text-gray-700">
+            P: <span className="font-normal">{P}</span>
+          </p>
+        </div>
       </div>
     </div>
   );

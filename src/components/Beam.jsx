@@ -1,43 +1,25 @@
-// src/components/Footing.js
+// src/components/Beam.js
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const Footing = ({ P, setAST }) => {
+const Beam = ({ setBeamAST, BeamAST }) => {
   const [FCK, setFCK] = useState(20);
   const [FY, setFY] = useState(415);
   const [b, setB] = useState(0);
-  const [l, setL] = useState(0);
   const [d, setD] = useState(0);
-  const [AST, setLocalAST] = useState(0);
-
-  const MU_CONST = 1241.79 * Math.pow(10, 6);
-
-  useEffect(() => {
-    setAST(AST);
-  }, [AST, setAST]);
+  const dPrime = 25;
+  const MU_CONST = 520 * Math.pow(10, 6);
 
   const calculate = () => {
-    let initialASTGuess = 1; // Initial guess for AST
-    let AST_calc = initialASTGuess;
-    let Mu;
-
-    // Iterate to refine the AST value
-    for (let i = 0; i < 1000; i++) {
-      Mu = 0.87 * FY * AST_calc * d * (2 - (AST_calc * FY) / (b * d * FCK));
-      AST_calc =
-        MU_CONST / (0.87 * FY * d * (2 - (AST_calc * FY) / (b * d * FCK)));
-    }
-
-    setLocalAST(AST_calc);
+    const AST_calc = MU_CONST / (0.87 * FY * (d - dPrime));
+    setBeamAST(AST_calc);
   };
 
   return (
     <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md mx-auto">
       <h1 className="text-2xl font-semibold mb-6 text-blue-600">
-        Footing Calculator
+        Beam Calculator
       </h1>
-
-      <p>Pu: {P}</p>
       <div className="space-y-4">
         <div className="flex flex-col">
           <label htmlFor="breadth" className="font-medium text-gray-600">
@@ -74,18 +56,7 @@ const Footing = ({ P, setAST }) => {
         </div>
         <div className="flex flex-col">
           <label htmlFor="breadth" className="font-medium text-gray-600">
-            Length (l):
-          </label>
-          <input
-            type="number"
-            placeholder="l"
-            value={l}
-            onChange={(e) => setL(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="breadth" className="font-medium text-gray-600">
-            Length (l):
+            Depth (d):
           </label>
           <input
             type="number"
@@ -102,7 +73,7 @@ const Footing = ({ P, setAST }) => {
         </button>
         <div className="mt-6 space-y-2">
           <p className="font-medium text-gray-700">
-            AST: <span className="font-normal">{AST}</span>
+            Beam AST: <span className="font-normal">{BeamAST}</span>
           </p>
         </div>
       </div>
@@ -110,4 +81,4 @@ const Footing = ({ P, setAST }) => {
   );
 };
 
-export default Footing;
+export default Beam;
