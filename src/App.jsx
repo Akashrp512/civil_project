@@ -19,9 +19,14 @@ function App() {
   const [BeamAST, setBeamAST] = useState(0);
 
   return (
-    <div className="App">
+    <div className="App bg-slate-300 h-screen w-screen">
+      <div className="bg-blue-600">
+        <h1 className="text-center p-2 font-black text-white text-2xl">
+          Civil Calculator
+        </h1>
+      </div>
       <Tabs>
-        <TabList>
+        <TabList className="bg-blue-600 text-white">
           <Tab>Column</Tab>
           <Tab>Footing</Tab>
           <Tab>Beam</Tab>
