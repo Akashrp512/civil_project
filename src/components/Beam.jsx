@@ -2,9 +2,12 @@
 
 import React, { useState } from "react";
 
-const Beam = ({ setBeamAST, BeamAST, b, d }) => {
+const Beam = () => {
   const [FCK, setFCK] = useState(20);
   const [FY, setFY] = useState(415);
+  const [b, setB] = useState(0);
+  const [d, setD] = useState(0);
+  const [BeamAST, setBeamAST] = useState(0);
 
   const dPrime = 25;
   const MU_CONST = 520 * Math.pow(10, 6);
@@ -59,6 +62,30 @@ const Beam = ({ setBeamAST, BeamAST, b, d }) => {
             value={FY}
             className="border-2 p-2 rounded focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
             onChange={(e) => setFY(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="breadth" className="font-medium text-gray-600">
+            Breadth (b):
+          </label>
+          <input
+            type="number"
+            id="breadth"
+            value={b}
+            onChange={(e) => setB(e.target.value)}
+            className="border-2 p-2 rounded focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="depth" className="font-medium text-gray-600">
+            Depth (d):
+          </label>
+          <input
+            type="number"
+            id="depth"
+            value={d}
+            onChange={(e) => setD(e.target.value)}
+            className="border-2 p-2 rounded focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
           />
         </div>
 

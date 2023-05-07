@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import "../index.css";
 
-function Column({
-  setASC,
-  ASC,
-  setAC,
-  AC,
-  setP,
-  P,
-  breadth,
-  depth,
-  setBreadth,
-  setDepth,
-}) {
+function Column() {
+  const [ASC, setASC] = useState(0);
+  const [AC, setAC] = useState(0);
+  const [P, setP] = useState(0);
+  const [breadth, setBreadth] = useState(0);
+  const [depth, setDepth] = useState(0);
   const [isCalculated, setIsCalculated] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 

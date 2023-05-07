@@ -1,20 +1,19 @@
 // src/components/Footing.js
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const Footing = ({ P, setAST, b, d }) => {
+const Footing = () => {
   const [FCK, setFCK] = useState(20);
   const [FY, setFY] = useState(415);
   const [l, setL] = useState(0);
-  const [AST, setLocalAST] = useState(0);
+  const [P, setP] = useState(0);
+  const [b, setB] = useState(0);
+  const [d, setD] = useState(0);
+  const [AST, setAST] = useState(0);
   const [isCalculated, setIsCalculated] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const MU_CONST = 1241.79 * Math.pow(10, 6);
-
-  useEffect(() => {
-    setAST(AST);
-  }, [AST, setAST]);
 
   const isValidInput = (FCK, FY, b, l, d) => {
     FCK = parseFloat(FCK);
@@ -46,7 +45,7 @@ const Footing = ({ P, setAST, b, d }) => {
         MU_CONST / (0.87 * FY * d * (2 - (AST_calc * FY) / (b * d * FCK)));
     }
 
-    setLocalAST(AST_calc);
+    setAST(AST_calc); // Update the AST state with the new calculated value
     setIsCalculated(true);
   };
 
@@ -56,10 +55,31 @@ const Footing = ({ P, setAST, b, d }) => {
         Footing Calculator
       </h1>
 
-      <p className="font-medium text-gray-700 text-lg">
-        Pu: <span className="font-normal">{P}</span>
-      </p>
       <div className="space-y-4">
+        <div className="flex flex-col">
+          <label htmlFor="breadth" className="font-medium text-gray-600">
+            Breadth (b):
+          </label>
+          <input
+            type="number"
+            id="breadth"
+            value={b}
+            onChange={(e) => setB(e.target.value)}
+            className="border-2 p-2 rounded focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="depth" className="font-medium text-gray-600">
+            Depth (d):
+          </label>
+          <input
+            type="number"
+            id="depth"
+            value={d}
+            onChange={(e) => setD(e.target.value)}
+            className="border-2 p-2 rounded focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
+          />
+        </div>
         <div className="flex flex-col">
           <label htmlFor="breadth" className="font-medium text-gray-600">
             FCK:
